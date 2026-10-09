@@ -28,9 +28,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import myuko_pure as MP
 
-# 本地默认 127.0.0.1:8000；托管平台（Render 等）用环境变量 PORT / HOST 覆盖
-PORT = int(os.environ.get("PORT", "8000") or "8000")
-BIND_HOST = os.environ.get("HOST", "127.0.0.1").strip() or "127.0.0.1"
+PORT = 8000
 UA_BROWSER = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/122.0 Safari/537.36")
 _ctx = ssl.create_default_context()
@@ -1875,7 +1873,7 @@ if __name__ == "__main__":
     print(f"  代理白名单域名后缀：{', '.join(ALLOW_HOST_SUFFIX)}")
     print(f"  单 IP 限流：{RATE_LIMITS}   并发转码上限：{MAX_TRANSCODES}")
 
-    srv = Server((BIND_HOST, PORT), Handler)
+    srv = Server(("127.0.0.1", PORT), Handler)
     atexit.register(_shutdown_children)
     _start_sweeper()
     print(f"\n  本地播放站已启动 →  http://127.0.0.1:{PORT}")
