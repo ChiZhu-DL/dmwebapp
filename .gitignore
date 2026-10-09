@@ -1,0 +1,9 @@
+# 运行时产物 / 秘钥，不入库
+.token
+bootstrap_live.json
+bootstrap_live.jpg
+_m0_server.log
+*.log
+__pycache__/
+*.pyc
+webapp.zip
